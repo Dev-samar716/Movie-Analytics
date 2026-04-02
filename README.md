@@ -148,6 +148,7 @@ This project is currently frontend-focused and serves as a foundation for buildi
 ## 💡 Author's Note
 
 I decided to work in this project because I've always been a movie enthusiast, struggling to find great movies to watch according to my preference, and gather informations regarding various movies. Therefore, I am trying to build this project in order to make it easier for movie lovers to explore new movies detail, track their personal watchlist, and get personalized recommendation in future.
+
 ---
 
 ## ⭐ Show Your Support
