@@ -41,7 +41,7 @@ A modern movie analytics web application built using a clean, scalable frontend 
 
 ## 🧠 Tech Stack
 
-* **Frontend:** React (with Hooks)
+* **Frontend:** React (with TypeScript)
 * **State Management:** Context API
 * **UI designing:** Tailwind css
 * **API:** TMDB (The Movie Database)
