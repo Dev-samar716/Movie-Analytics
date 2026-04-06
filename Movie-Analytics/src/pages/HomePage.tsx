@@ -1,10 +1,10 @@
 import Header from "../components/Header";
 import FeaturedSection from "../components/FeaturedSection";
 import MovieSection from "../components/MovieSection";
-import { useState, useMemo } from "react"; 
+import {type SetStateAction, type Dispatch } from "react"; 
 import useFilterMovies from "../hooks/useFilterMovies"
 import type Movie from "../types"; 
-import useAvailableMovieGenres from "../hooks/useAvailableMovieGenres"; 
+import useFilterGenres from "../hooks/useFilteredGenres";
 import type { GenreObjectKeys } from "../types"; 
 import SearchResults from '../components/SearchResults'
 
@@ -17,27 +17,24 @@ interface FilteredMoviesTypes {
 
 interface Props {
   genres: GenreObjectKeys[], 
+  selectedGenre: string[]
+  setSelectedGenre: Dispatch<SetStateAction<string[]>>
 }
 
-export default function HomePage({genres} : Props) {
-  const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
+export default function HomePage({genres, selectedGenre, setSelectedGenre} : Props) {
   
   const {filteredPopularMovies, 
         filteredTrendingMovies, 
         filteredTopRatedMovies,
        filteredSearchResults} : FilteredMoviesTypes = useFilterMovies({selectedGenre});
-  const availableMovies : string[] = useAvailableMovieGenres();
 
-  const filteredGenres : GenreObjectKeys[] =  useMemo(() => { 
-    if(!genres) return [];
-      return genres.filter(genre => availableMovies.includes(String(genre.id)));
-  }, [genres, availableMovies])
+  const filteredGenres = useFilterGenres({genres})
 
   return (
     <div className="min-h-screen bg-gray-900 text-white px-6 py-8 space-y-12">
 
       <Header filteredGenres={filteredGenres} selectedGenre={selectedGenre} 
-      setSelectedGenre={setSelectedGenre}/>
+      setSelectedGenre={setSelectedGenre} title="Movie Analytics Dashboard"/>
 
       <FeaturedSection />
        {filteredSearchResults.length === 0 ? <section className="space-y-8">

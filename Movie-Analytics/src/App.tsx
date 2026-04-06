@@ -11,17 +11,21 @@ import useLanguagesContext from "./hooks/useLanguagesContext";
 import fetchMovieData from "./services/MovieDataFetch.ts";
 import SearchResultsContextProvider from './context/SearchResultsContextProvider.tsx'
 import LoadingContextContextProvider from './context/LoadingContextProvider.tsx'
+import WatchListContextProvider from './context/WatchListContextProvider.tsx';
+import WatchListPage from './pages/WatchListPage.tsx';
 
 function App() { 
   const [genres, setGenres] = useState<GenreObjectKeys[]>([])
+   const [selectedGenre, setSelectedGenre] = useState<string[]>([]);
   const { setPopularMovies } = usePopularMoviesContext();
   const { setTopRatedMovies } = useTopRatedMoviesContext();
   const { setTrendingMovies } = useTrendingMoviesContext();
   const { setLanguages } = useLanguagesContext()
   
   const routers = createBrowserRouter([
-    {path: '/', element: <HomePage genres={genres}/>}, 
-    {path: '/movie/:id', element: <MoviePage genres={genres}/>}
+    {path: '/', element: <HomePage genres={genres} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>}, 
+    {path: '/movie/:id', element: <MoviePage genres={genres} />}, 
+    {path: '/watch-list', element: <WatchListPage genres={genres} selectedGenre={selectedGenre} setSelectedGenre={setSelectedGenre}/>}
   ]);
  // Fetching the data in app component because we need fresh data for several components after each reload
   useEffect(() => {
@@ -49,7 +53,11 @@ function App() {
   return (
   <SearchResultsContextProvider> 
     <LoadingContextContextProvider>
-      <RouterProvider router={routers} />
+      <WatchListContextProvider>
+
+            <RouterProvider router={routers} />
+            
+      </WatchListContextProvider>
     </LoadingContextContextProvider> 
   </SearchResultsContextProvider>
 )

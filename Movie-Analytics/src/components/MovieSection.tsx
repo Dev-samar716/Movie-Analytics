@@ -15,7 +15,7 @@ const MovieSection = ({movies, title} : Props) => {
 
       <div className="flex overflow-x-auto space-x-4 pb-2">
         {movies.map((movie: Movie) => (
-          <MovieCard key={movie.id} movie={movie}/>
+          <MovieCard key={movie.id} movie={movie} mode="home"/>
         ))}
       </div>
     </div>

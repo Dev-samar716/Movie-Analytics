@@ -43,6 +43,11 @@ export interface TopRatedMoviesState {
   setTopRatedMovies: Dispatch<SetStateAction<Movie[]>>;
 }
 
+export interface WatchList_StateTypes {
+    watchList: Movie[] 
+    setWatchList: Dispatch<SetStateAction<Movie[]>>
+}
+
 // ---GENRE---
 export interface GenreObjectKeys {
    id: number, 

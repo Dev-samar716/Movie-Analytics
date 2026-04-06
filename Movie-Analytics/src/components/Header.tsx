@@ -1,14 +1,16 @@
 import type { GenreObjectKeys } from "../types";
 import ModernSearchBar from "./SearchBar"; 
 import type { Dispatch, SetStateAction } from "react";
+import { Link } from 'react-router-dom'
 
 interface Props {
   filteredGenres: GenreObjectKeys[], 
   selectedGenre: string[], 
   setSelectedGenre: Dispatch<SetStateAction<string[]>>;
+  title: string
 }
 
-const Header = ({filteredGenres, selectedGenre, setSelectedGenre} : Props) => { 
+const Header = ({filteredGenres, selectedGenre, setSelectedGenre, title} : Props) => { 
 
   return (
     <header className="flex flex-col space-y-6">
@@ -19,12 +21,29 @@ const Header = ({filteredGenres, selectedGenre, setSelectedGenre} : Props) => {
         {/* Logo */}
         <div className="flex items-center gap-4 md:gap-8">
           <h1 className="font-poppins text-3xl font-bold font-poppins whitespace-nowrap">
-            Movie Analytics Dashboard
+            {title}
           </h1>
         </div>
 
+        <div className="w-[50%]">
+          <ul className="flex gap-8 p-4 justify-center">
+        <li>
+          <Link to="/watch-list" className="font-poppins text-white-500 hover:bg-gray-600 p-3
+          hover:text-blue-400">
+        WatchList
+        </Link>
+        </li>
+        <li>
+          <Link to="/favourites" className="font-poppins text-white-500 hover:bg-gray-600 p-3
+          hover:text-blue-400">
+        Favourites
+        </Link>
+        </li>
+          </ul>
+        </div>
+
         {/* Search */}
-        <ModernSearchBar />
+        {title.split(" ").includes("Analytics") &&  <ModernSearchBar />}
       </div>
 
       <div className="flex flex-wrap gap-2 border-t border-gray-700 pt-4">
