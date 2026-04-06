@@ -29,7 +29,7 @@ const SearchResults = ({filteredSearchResults} : {filteredSearchResults : Movie[
       </h2>
       <div className="flex flex-wrap gap-6">
         {filteredSearchResults.map((movie : Movie) => (
-          <MovieCard key={movie.id} movie={movie} mode="home"/>
+          <MovieCard key={movie.id} movie={movie} mode="search"/>
         ))}
       </div>
     </section>

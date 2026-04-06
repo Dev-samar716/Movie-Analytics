@@ -19,6 +19,16 @@ const ModernSearchBar = () => {
     } 
 
     useEffect(() => {
+       const timeout = setTimeout(() => {
+          handleSearch()
+       }, 500)
+
+       return() => {
+         clearTimeout(timeout)
+       }
+    }, [searchQuery])
+
+    useEffect(() => {
         if(searchResults.length === 0) return; 
         setLoading(false)
     }, [searchResults])

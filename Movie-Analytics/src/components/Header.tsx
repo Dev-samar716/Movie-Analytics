@@ -27,6 +27,12 @@ const Header = ({filteredGenres, selectedGenre, setSelectedGenre, title} : Props
 
         <div className="w-[50%]">
           <ul className="flex gap-8 p-4 justify-center">
+            <li>
+            <Link to="/" className="font-poppins text-white-500 hover:bg-gray-600 p-3
+          hover:text-blue-400">
+             Home
+            </Link>
+          </li>
         <li>
           <Link to="/watch-list" className="font-poppins text-white-500 hover:bg-gray-600 p-3
           hover:text-blue-400">

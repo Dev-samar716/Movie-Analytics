@@ -36,7 +36,7 @@ export default function HomePage({genres, selectedGenre, setSelectedGenre} : Pro
       <Header filteredGenres={filteredGenres} selectedGenre={selectedGenre} 
       setSelectedGenre={setSelectedGenre} title="Movie Analytics Dashboard"/>
 
-      <FeaturedSection />
+      {filteredSearchResults.length === 0 && <FeaturedSection />}
        {filteredSearchResults.length === 0 ? <section className="space-y-8">
         <MovieSection  movies={filteredTrendingMovies} title='Trending Movies'/>
         <MovieSection  movies={filteredPopularMovies} title='Popular Movies'/>
